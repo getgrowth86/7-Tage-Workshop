@@ -6,3 +6,4 @@ const result = html.replace('%%BREVO_API_KEY%%', key);
 fs.writeFileSync('./public/index.html', result);
 
 console.log('Build done. Key injected:', key ? '✓' : '⚠️ missing');
+ 
