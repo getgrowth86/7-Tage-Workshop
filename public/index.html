@@ -7,7 +7,19 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600;1,700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
-  <script src="https://www.google.com/recaptcha/api.js?render=RECAPTCHA_SITE_KEY_PLACEHOLDER" id="recaptcha-script"></script>
+  <!-- Meta Pixel -->
+  <script>
+    !function(f,b,e,v,n,t,s){{if(f.fbq)return;n=f.fbq=function(){{n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)}};if(!f._fbq)f._fbq=n;
+    n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}}(window,
+    document,'script','https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '1584238278906224');
+    fbq('track', 'PageView');
+  </script>
+  <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=1584238278906224&ev=PageView&noscript=1"/></noscript>
+  <!-- End Meta Pixel -->
   <style>
     :root {
       --bg:       #060d0c;
@@ -86,25 +98,25 @@
     /* ── ABOVE THE FOLD ── */
     .fold {
       position: relative; z-index: 1;
-      min-height: calc(100svh - 59px);
       display: flex;
       flex-direction: column;
       padding: 28px 20px 24px;
-      gap: 28px;
+      gap: 24px;
     }
 
     @media (min-width: 820px) {
       .fold {
         flex-direction: row;
         align-items: center;
-        padding: 48px 52px;
-        gap: 56px;
+        justify-content: center;
+        padding: 40px 52px;
+        gap: 52px;
         max-width: 1160px;
         margin: 0 auto;
-        min-height: calc(100svh - 59px);
+        min-height: calc(100vh - 58px);
       }
-      .copy-col { flex: 1; }
-      .form-col  { width: 380px; flex-shrink: 0; }
+      .copy-col { flex: 1; max-width: 580px; }
+      .form-col  { width: 370px; flex-shrink: 0; }
     }
 
     /* ── COPY ── */
@@ -686,6 +698,7 @@
   }
 
   function done() {
+    if (typeof fbq !== 'undefined') fbq('track', 'Lead');
     if (CONFIG.REDIRECT_URL) { window.location.href=CONFIG.REDIRECT_URL; return; }
     document.getElementById('form-state').style.display='none';
     document.getElementById('success-state').style.display='block';
